@@ -1,20 +1,4 @@
 import './index.scss'
-
-const setTransition = (el, prefix, prefixType, duration, f) => {
-  const enterClass = `${prefix}-${prefixType}`
-  const enterActiveClass = `${prefix}-active-${prefixType}`
-
-  el.classList.add(enterClass)
-  el.style['transition-duration'] = duration + 'ms'
-  el.offsetHeight;
-  el.classList.add(enterActiveClass)
-
-  setTimeout(() => {
-    el.classList.remove(enterClass)
-    el.style['transition-duration'] = ''
-    if (typeof f === 'function') f()
-  }, duration);
-}
 /*
 const transition = ({ el, properties = {}, duration = 1000, f = () => { } } = {}) => {
   el.style.transition = Object.keys(properties).join(','); // ['background', 'opacity'].join(',') = 'background,opacity' // `background ${duration1},opacity`
@@ -43,6 +27,21 @@ transition({ el: document.querySelector('body'), properties: { background: 'red'
 // })
 // setTimeout 1000-> transition({el: document.querySelector('body'), properties: {background: 'red', opacity: 0}, duration: 3000})
 
+const setTransition = (el, prefix, prefixType, duration, f) => {
+  const enterClass = `${prefix}-${prefixType}`
+  const enterActiveClass = `${prefix}-active-${prefixType}`
+
+  el.classList.add(enterClass)
+  el.style['transition-duration'] = duration + 'ms'
+  el.offsetHeight;
+  el.classList.add(enterActiveClass)
+
+  setTimeout(() => {
+    el.classList.remove(enterClass)
+    el.style['transition-duration'] = ''
+    if (typeof f === 'function') f()
+  }, duration);
+}
 // setTransition(document.querySelector('.post-container:nth-child(1)'), 'fade', 'in', 3000)
 // setTransition(document.querySelector('.post-container:nth-child(2)'), 'fade', 'in', 2000)
 // setTransition(document.querySelector('.post-container:nth-child(3)'), 'fade', 'in', 1000)
